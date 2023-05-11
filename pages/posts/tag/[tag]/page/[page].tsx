@@ -1,7 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import Head from "next/head";
-import Pagination from "../../../../../components/Pagination/Pagination";
-import SinglePost from "../../../../../components/Post/SinglePost";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Pagination from '../../../../../components/Pagination/Pagination';
+import SinglePost from '../../../../../components/Post/SinglePost';
 import {
   getAllPosts,
   getAllTags,
@@ -10,8 +10,8 @@ import {
   getPostsByPage,
   getPostsByTagAndPage,
   getPostsForTopPage,
-} from "../../../../../lib/notionAPI";
-import Tag from "../../../../../components/Tag/Tag";
+} from '../../../../../lib/notionAPI';
+import Tag from '../../../../../components/Tag/Tag';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allTags = await getAllTags();
@@ -27,11 +27,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
   );
 
-  // console.log(params);
-
   return {
     paths: params,
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };
 

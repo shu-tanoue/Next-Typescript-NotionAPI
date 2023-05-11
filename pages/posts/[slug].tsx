@@ -1,9 +1,9 @@
-import React from "react";
-import { getAllPosts, getSinglePost } from "../../lib/notionAPI";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import Link from "next/link";
+import React from 'react';
+import { getAllPosts, getSinglePost } from '../../lib/notionAPI';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import Link from 'next/link';
 
 export const getStaticPaths = async () => {
   const allPosts = await getAllPosts();
@@ -11,10 +11,9 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };
-
 export const getStaticProps = async ({ params }) => {
   const post = await getSinglePost(params.slug);
 
@@ -45,14 +44,14 @@ const Post = ({ post }) => {
         <ReactMarkdown
           components={{
             code({ node, inline, className, children }) {
-              const match = /language-(\w+)/.exec(className || "");
+              const match = /language-(\w+)/.exec(className || '');
               return !inline && match ? (
                 <SyntaxHighlighter
                   style={vscDarkPlus}
                   language={match[1]}
                   PreTag="div"
                 >
-                  {String(children).replace(/\n$/, "")}
+                  {String(children).replace(/\n$/, '')}
                 </SyntaxHighlighter>
               ) : (
                 <code>{children}</code>
@@ -60,7 +59,9 @@ const Post = ({ post }) => {
             },
           }}
         >
-          {post.markdown}
+          {typeof post.markdown === 'string'
+            ? post.markdown
+            : post.markdown.parent}
         </ReactMarkdown>
 
         <Link href="/">
