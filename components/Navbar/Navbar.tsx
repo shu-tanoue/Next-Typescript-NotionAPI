@@ -19,20 +19,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link
-                href="#"
+              <a
+                href="https://github.com/shu-tanoue"
                 className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
               >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
-              >
-                Work
-              </Link>
+                Github
+              </a>
             </li>
           </ul>
         </div>

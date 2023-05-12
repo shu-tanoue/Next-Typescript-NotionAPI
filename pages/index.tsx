@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { GetStaticProps } from 'next';
 import Tag from '../components/Tag/Tag';
 import { getAllTags, getPostsForTopPage } from '../lib/notionAPI';
+import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async () => {
   const fourPosts = await getPostsForTopPage(4);
@@ -18,6 +19,8 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Home({ fourPosts, allTags }) {
+  const router = useRouter();
+
   return (
     <div className="container h-full w-full mx-auto">
       <Head>
@@ -42,6 +45,7 @@ export default function Home({ fourPosts, allTags }) {
             </div>
           );
         })}
+
         <Link
           href="/posts/page/1"
           className="mb-6 lg:w-1/2 mx-auto rounded-md px-5 block text-right"
